@@ -5,38 +5,6 @@ import 'react-checkbox-tree/lib/react-checkbox-tree.css'
 import 'font-awesome/css/font-awesome.min.css'
 import X2JS from 'x2js'
 
-function traverse (e, chName, f) {
-  let ch = e[chName]
-  if(typeof ch === 'undefined') {
-    return f(e)
-  } else {
-    let ret = f(e)
-    ret.children = ch.map((e) => { return traverse(e, chName, f)})
-    return ret
-  }
-}
-
-function buildTaxonomyTree (data) {
-  const f = (e) => { return {label: e._label, value: e._name}}
-  const x2j = new X2JS()
-  let j = x2j.xml2js(data)
-  let root = j.taxonomy
-  let taxonomy = traverse(root, 'classification', f)
-  return taxonomy.children
-}
-function buildTaxonomyTrees (data) {
-  const f = (e) => { return {label: e._label, value: e._name}}
-  const x2j = new X2JS()
-  let j = x2j.xml2js(data)
-  alert(JSON.stringify(j))
-  let roots = j.taxonomies.taxonomy
-  let taxonomies = roots.map((root)=>{
-    let ret = traverse(root, 'classification', f)
-    ret.label = ret.value
-    return ret
-  })
-  return taxonomies
-}
 
 class TaxonomySelector extends Component {
   constructor (props) {
@@ -80,7 +48,9 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      taxonomies: 'INITIAL'
+      checked: [],
+      expanded: [],
+      taxonomies: []
     }
   }
   componentWillMount () {
@@ -96,15 +66,43 @@ class App extends Component {
       console.log('JSON読み込みエラー')
       return
     }
-    alert(JSON.stringify(res.text))
+    //alert(JSON.stringify(res.body.tagspace.taxonomies))
     this.setState({taxonomies: res.body.tagspace.taxonomies})
     this.setState({refs: res.body.tagspace.refs})
+    this.setState({expanded: res.body.tagspace.toplevel})
     //let taxonomies = buildTaxonomyTrees(res.text)
     //alert(JSON.stringify(taxonomies))
     //this.setState({taxonomy: taxonomies})
   }
+  checkedLabel () {
+    return this.state.checked.map((i) => {
+      return this.state.refs[i]
+    }).join(' ')
+  }
   render() {
-    return <div>{ this.state.taxonomies }</div>
+    return (
+      <div className="App">
+        <div>
+        { /* JSON.stringify(this.state.taxonomies) */}
+        </div>
+        <div>
+          <CheckboxTree
+            nodes={this.state.taxonomies}
+            checked={this.state.checked}
+            noCascade='true'
+            expanded={this.state.expanded}
+            onCheck ={checked  => this.setState({ checked  })}
+            onExpand={expanded => this.setState({ expanded })}
+            />
+        </div>
+        <div>
+          {
+            //this.state.checked.join(' ')
+            this.checkedLabel()
+          }
+        </div>
+      </div>
+      )
   }
 }
 
@@ -129,9 +127,9 @@ class App_ extends Component {
       console.log('JSON読み込みエラー')
       return
     }
-    let taxonomies = buildTaxonomyTrees(res.text)
-    alert(JSON.stringify(taxonomies))
-    this.setState({taxonomy: taxonomies})
+    //let taxonomies = buildTaxonomyTrees(res.text)
+    //alert(JSON.stringify(taxonomies))
+    //this.setState({taxonomy: taxonomies})
   }
   render() {
     if (!this.state.taxonomy) {
