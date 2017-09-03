@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<taxonomies>
+  <taxonomy name='産業分類'>
+    <classification label='製造' name='製造'>
+      <classification label='組立製造' name='組立製造'/>
+      <classification label='プロセス製造' name='プロセス製造'/>
+    </classification>
+    <classification label='流通' name='流通'>
+      <classification label='卸' name='卸'/>
+      <classification label='小売' name='小売'/>
+    </classification>
+    <classification label='情報サービス' name='情報サービス'>
+      <classification label='メディア' name='メディア'/>
+      <classification label='ソフトサービス' name='ソフトサービス'/>
+    </classification>
+    <classification label='金融' name='金融'>
+      <classification label='銀行' name='銀行'/>
+      <classification label='保険証券' name='保険証券'/>
+    </classification>
+  </taxonomy>
+  <taxonomy name='売上規模'>
+    <classification label='売上10億円未満' name='規模A'/>
+    <classification label='売上10～30億円' name='規模B'/>
+    <classification label='売上30～100億円' name='規模C'/>
+    <classification label='売上100～300億円' name='規模D'/>
+    <classification label='売上300～1,000億円' name='規模E'/>
+    <classification label='売上1,000～3,000億円' name='規模F'/>
+    <classification label='売上3,000億円以上' name='規模G'/>
+  </taxonomy>
+  <taxonomy name='従業員規模'>
+    <classification label='従業員10名未満' name='規模1'/>
+    <classification label='従業員10～30名' name='規模2'/>
+    <classification label='従業員30～100名' name='規模3'/>
+    <classification label='従業員100～300名' name='規模4'/>
+    <classification label='従業員300～1,000名' name='規模5'/>
+    <classification label='従業員1,000～3,000名' name='規模6'/>
+    <classification label='従業員3,000名以上' name='規模7'/>
+  </taxonomy>
+</taxonomies>

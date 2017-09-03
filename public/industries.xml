@@ -1,0 +1,18 @@
+<taxonomy name='産業分類'>
+  <classification label='製造' name='製造'>
+    <classification label='組立製造' name='組立製造'/>
+    <classification label='プロセス製造' name='プロセス製造'/>
+  </classification>
+  <classification label='流通' name='流通'>
+    <classification label='卸' name='卸'/>
+    <classification label='小売' name='小売'/>
+  </classification>
+  <classification label='情報サービス' name='情報サービス'>
+    <classification label='メディア' name='メディア'/>
+    <classification label='ソフトサービス' name='ソフトサービス'/>
+  </classification>
+  <classification label='金融' name='金融'>
+    <classification label='銀行' name='銀行'/>
+    <classification label='保険証券' name='保険証券'/>
+  </classification>
+</taxonomy>
