@@ -3,7 +3,7 @@ import request from 'superagent'
 import CheckboxTree from 'react-checkbox-tree'
 import 'react-checkbox-tree/lib/react-checkbox-tree.css'
 import 'font-awesome/css/font-awesome.min.css'
-import X2JS from 'x2js'
+//import X2JS from 'x2js'
 
 
 class TaxonomySelector extends Component {
@@ -55,7 +55,7 @@ class App extends Component {
   }
   componentWillMount () {
     //request.get('http://192.168.0.21:3004/taxonomies/2.json')
-    request.get('./tagspace_01.json')
+    request.get('./tagspace_00.json')
       .accept('application/json')
       .end((err, res) => {
         this.loadedJSON(err, res)
